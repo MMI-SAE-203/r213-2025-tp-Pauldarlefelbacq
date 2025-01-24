@@ -45,16 +45,16 @@ const offres = [
 	<h1 class="text-red-400 font-bold text-8xl m-6 text-center">Offres</h1>
 
 	<div x-data="{ showFavorites: false }">
-		<button class="bg-blue-300 p-3" @click="showFavorites = !showFavorites">
+		<button class="bg-blue-300 p-3 ml-16" @click="showFavorites = !showFavorites">
 			<span x-show="!showFavorites">Afficher les favoris</span>
 			<span x-show="showFavorites">Afficher tout</span>
 		</button>
 
-		<div class="grid grid-cols-2 gap-4">
-			<div x-show="!showFavorites">
+		<div>
+			<div class="grid grid-cols-2 gap-5 justify center" x-show="!showFavorites">
 				{offres.map((offre) => <Card {...offre} />)}
 			</div>
-			<div x-show="showFavorites">
+			<div class="grid grid-cols-2 gap-4" x-show="showFavorites">
 				{offres.map((offre) => offre.favori && <Card {...offre} />)}
 			</div>
 		</div>
