@@ -4,8 +4,8 @@ import Base from "../layouts/Base.astro"
 const {...offre} = Astro.props;
 ---
 
-<div x-data="{favori: '${favori}'}" x-bind:class="{'bg-gray-200': favori}" class="m-11 flex flex-col items-center justify-center rounded-md border-solid border-2 border-black">
-    <img class="w-64 h-64 my-8" src={offre.imgUrl} alt={offre.nom} />
+<div x-data="{Favori: '${offre.Favori}'}" x-bind:class="{'bg-gray-200': Favori}" class="m-11 gap-5 flex flex-col items-center justify-center rounded-md border-solid border-2 border-black">
+    <img class="w-64 h-64 my-8" src={offre.img} alt={offre.nom} />
     <h2 class="text-xl mb-2">{offre.adresse}</h2>
     <p class="text-blue-400 ml-6">{offre.nom}</p>
     <div>
@@ -13,7 +13,7 @@ const {...offre} = Astro.props;
         <p>{offre.surface}m²</p>
     </div>
     <div class="flex items-center gap-8 my-6">
-        {offre.favori && <p>⭐️</p>}
-        <button x-on:click="favori = !favori">Favori</button>
+        {offre.Favori && <p>⭐️</p>}
+        <button x-on:click="Favori = !Favori">Favori</button>
     </div>
 </div>
