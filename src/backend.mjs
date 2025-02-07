@@ -28,6 +28,11 @@ export async function bySurface(surface){
     return Surfacerecords
 }
 
+export async function byprix(prix){
+    const Pricerecords = await pb.collection('maison').getFullList( { filter : `prix>${prix}` }) ;
+    return Pricerecords
+}
+
 export async function surfaceORprice(surface, price){
     const SurPricerecords = await pb.collection('maison').getFullList( { filter : `surface>${surface}` , filter : `prix<${price}` }) ;
     return SurPricerecords

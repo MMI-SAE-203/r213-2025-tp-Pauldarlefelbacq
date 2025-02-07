@@ -1,0 +1,17 @@
+---
+import { getOffre } from "../../backend.mjs";
+import { byprix } from "../../backend.mjs";
+import Base from "../../layouts/Base.astro";
+import Card from "../../components/Card.astro";
+
+const { prix } = Astro.params;
+console.log(prix);
+
+const offre = await (prix);
+console.log(offre);
+---
+
+<Base titre={offre.prix}>
+    <div>
+        {offre.map((maison) => <Card {...maison} />)}
+    </div>
