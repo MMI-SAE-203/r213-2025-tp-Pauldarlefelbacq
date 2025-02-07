@@ -16,6 +16,7 @@ console.log(offres);
 
 <Base titre={offres.nomMaison}>
 	<h1 class="text-red-400 font-bold text-8xl m-6 text-center">Offres</h1>
+	<a href={`/surface/80`}>maisons supérieurs à 80m<sup>2</sup></a>
 
     <span class="">
         <div x-data="{ showGrille: true }">
@@ -30,6 +31,8 @@ console.log(offres);
 			<span x-show="!showFavorites">Afficher les favoris</span>
 			<span x-show="showFavorites">Afficher tout</span>
 		</button>
+
+
     </span>
         <div>
 			<div :class="showGrille ? 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4' : 'grid grid-cols-1 gap-4'" x-show="!showFavorites">

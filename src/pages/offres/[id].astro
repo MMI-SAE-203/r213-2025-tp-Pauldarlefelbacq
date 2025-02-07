@@ -10,14 +10,15 @@ if(!offre){
 ---
 
 <Base titre={offre.nomMaison}>
-    <h2>{offre.nomMaison}</h2>
-    <ul>
-        <li>{offre.adresse}</li>
-        <li>{offre.prix}€ / mois</li>
-        <li>{offre.surface}m<sup>2</sup></li>
+    <img class="w-64 h-64 my-8" src={offre.img} alt={offre.nom} />
+    <h2 class="text-2xl font-bold mb-4">{offre.nomMaison}</h2>
+    <ul class="list-disc pl-5 mb-4">
+        <li class="mb-2">{offre.adresse}</li>
+        <li class="mb-2">{offre.prix}€ / mois</li>
+        <li class="mb-2">{offre.surface}m<sup>2</sup></li>
     </ul>
-    <div>
-        {offre.Favori && <p>⭐️</p>}
-        <button x-on:click="Favori = !Favori">Favori</button>
+    <div class="flex items-center">
+        {offre.Favori && <p class="text-yellow-500 mr-2">⭐️</p>}
+        <button class="bg-blue-500 text-white px-4 py-2 rounded" x-on:click="Favori = !Favori">Favori</button>
     </div>
 </Base>
