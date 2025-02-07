@@ -49,6 +49,6 @@ export async function getOffres(){
      });
     return data;
     } catch(error){
-        console.lof("Une erreur est survenue en lisant la liste des maisons", error);
+        console.log("Une erreur est survenue en lisant la liste des maisons", error);
     }
 }
