@@ -1,0 +1,23 @@
+---
+import { getOffre } from '../../backend.mjs';
+import Base  from '../../layouts/Base.astro';
+
+const { id } = Astro.params;
+const offre = await getOffre(id);
+if(!offre){
+   return Astro.redirect('/offres');
+}
+---
+
+<Base titre={offre.nomMaison}>
+    <h2>{offre.nomMaison}</h2>
+    <ul>
+        <li>{offre.adresse}</li>
+        <li>{offre.prix}€ / mois</li>
+        <li>{offre.surface}m<sup>2</sup></li>
+    </ul>
+    <div>
+        {offre.Favori && <p>⭐️</p>}
+        <button x-on:click="Favori = !Favori">Favori</button>
+    </div>
+</Base>
