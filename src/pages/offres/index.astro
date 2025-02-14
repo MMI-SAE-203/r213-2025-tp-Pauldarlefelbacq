@@ -38,7 +38,7 @@ console.log(offres);
 
 <Base titre={offres.nomMaison}>
 
-	<form class="ml-20 mt-5 *:border border-r-2" action="/offres" method="POST">
+	<form class="ml-20 mt-5 *:border *:rounded-lg *:gap-5 *:p-3 *:mx-2" action="/offres" method="POST">
 		<input type="number" name="minPrix" placeholder="Prix minimum" />
 		<input type="number" name="maxPrix" placeholder="Prix maximum" />
 		<input type="submit" value="Filtrer par prix" />
