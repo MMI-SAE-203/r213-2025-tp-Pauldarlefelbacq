@@ -1,0 +1,23 @@
+---
+import Base from "../../layouts/Base.astro";
+import { allAgents } from "../../backend.mjs";
+
+const agents =await allAgents();
+console.log(agents)
+---
+
+<Base>
+    <h1>Artists</h1>
+    <ul class="grid gric-col-1 pl-5 mb-4">
+        {
+            agents?.map((agent)=>(
+                <li class="mb-2">
+                    <a href={`/agent/${agent.id}`}>
+                        {agent.Nom} {agent.Prenom}
+                    </a>
+                    <p>{agent.email}</p>
+                </li>
+            ))
+        }
+    </ul>
+</Base>

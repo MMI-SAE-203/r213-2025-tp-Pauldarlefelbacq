@@ -1,10 +1,12 @@
 ---
-import Base from "../layouts/Base.astro"
+import Base from "../layouts/Base.astro";
+import favorite from "../assets/img/favorite.png";
 
 const {...offre} = Astro.props;
 ---
 
-<div x-data="{Favori: '${offre.Favori}'}" x-bind:class="{'bg-gray-200': Favori}" class="m-11 gap-5 flex flex-col items-center justify-center rounded-md border-solid border-2 border-black">
+<div x-data={`{favori: ${offre.favori}, clickFavori() {this.favori = !this.favori; setFavori(${JSON.stringify(offre)});}}`}
+class="m-11 gap-5 flex flex-col items-center justify-center rounded-md border-solid border-2 border-black">
     <img class="w-64 h-64 my-8" src={offre.img} alt={offre.nom} />
     <h2 class="text-xl mb-2">{offre.adresse}</h2>
     <p class="text-blue-400 ml-6">{offre.nom}</p>
@@ -13,8 +15,15 @@ const {...offre} = Astro.props;
         <p>{offre.surface}m²</p>
     </div>
     <div class="flex items-center gap-8 my-6">
-        {offre.Favori && <p>⭐️</p>}
-        <button x-on:click="Favori = !Favori">Favori</button>
+        <button class="absolute bottom-0 left-0 p-2 text-white rounded-br-lg" @click="setFavori">
+            <img :src="Favori ? '../assets/img/favorite_filled.png' : '../assets/img/favorite.png" alt="Favorite Icon" class="w-6 h-6" />
+        </button>    
     </div>
     <a href={`/offres/${offre.id}`}>Voir plus</a>
 </div>
+
+<script>
+    //@ts-nocheck
+    import { setFavori } from "../backend.mjs";
+    window.setFavori = setFavori;
+</script>

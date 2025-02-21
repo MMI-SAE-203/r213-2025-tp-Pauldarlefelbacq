@@ -43,6 +43,11 @@ export async function agentID(id){
     return Agentrecords
 }
 
+export async function allAgents() {
+    const records = await pb.collection('agent').getFullList() ;
+    return records
+}
+
 export async function getOffres(){
     try {
         let data = await pb.collection('Maison').getFullList({
@@ -100,4 +105,17 @@ export async function filterByPrix(prixMin, prixMax) {
         console.log('Une erreur est survenue en filtrant la liste des maisons', error);
         return [];
     }
+}
+
+export async function setFavori(house) {
+    await pb.collection('maison').update(house.id, {Favori: !house.Favori});
+}
+
+export async function allMaisonsByAgentId(id){
+    let agentMaisonRecordsID = await pb.collection('maison').getFullList({ filter : `agent_id.id='${id}'`, expand: 'agent_id' }) ;
+    agentMaisonRecordsID = agentMaisonRecordsID.map((maison) => {
+        maison.imageUrl = pb.files.getURL(maison, maison.images);
+        return maison;
+    });
+    return agentMaisonRecordsID
 }

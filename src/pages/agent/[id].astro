@@ -1,0 +1,26 @@
+---
+import { agentID, allMaisonsByAgentId } from '../../backend.mjs';
+import Base  from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+import Carousel from '../../components/Carousel.astro';
+
+const { id } = Astro.params;
+const agent = await agentID(id);
+if(!agent){
+   return Astro.redirect('/agents');
+}
+const maisons = await allMaisonsByAgentId(id);
+---
+
+<Base titre={agent.Nom}>
+    <h2 class="text-2xl font-bold mb-4">{agent.Nom}</h2>
+    <ul class="list-disc pl-5 mb-4">
+        <li class="mb-2">{agent.email}</li>
+        <li class="mb-2">{agent.Prenom} {agent.Nom}</li>
+    </ul>
+    <ul>
+        {
+            <Carousel maisons={maisons}/>
+        }
+    </ul>
+</Base>
